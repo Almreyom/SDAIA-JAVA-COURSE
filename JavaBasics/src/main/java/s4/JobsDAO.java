@@ -34,7 +34,7 @@ public class JobsDAO {
         st.executeUpdate();
     }
 
-    public void UpdateJob(int jobId) throws SQLException {
+    public void DeleteJob(int jobId) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(DELETE_JOB);
         st.setInt(1, jobId);
