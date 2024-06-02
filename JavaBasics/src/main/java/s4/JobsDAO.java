@@ -63,7 +63,7 @@ public class JobsDAO {
             depts.add(new jobs(rs));
         }
 
-        return depts;
+        return jobs;
     }
 
 }
