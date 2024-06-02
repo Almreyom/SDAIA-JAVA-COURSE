@@ -34,20 +34,20 @@ public class JobsDAO {
         st.executeUpdate();
     }
 
-    public void UpdateJob(int jobId) throws SQLException {
+    public void DeleteJob(int jobId) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(DELETE_JOB);
         st.setInt(1, jobId);
         st.executeUpdate();
     }
 
-    public Department selectJob(int JobId) throws SQLException {
+    public jobs selectJob(int JobId) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(SELECT_ONE_JOB);
         st.setInt(1, JobId);
         ResultSet rs = st.executeQuery();
         if(rs.next()) {
-            return new Department(rs);
+            return new Job(rs);
         }
         else {
             return null;
@@ -58,12 +58,12 @@ public class JobsDAO {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(SELECT_ALL_JOBS);
         ResultSet rs = st.executeQuery();
-        ArrayList<jobs> depts = new ArrayList<>();
+        ArrayList<jobs> jobs = new ArrayList<>();
         while (rs.next()) {
-            depts.add(new jobs(rs));
+            jobs.add(new jobs(rs));
         }
 
-        return depts;
+        return jobs;
     }
 
 }
