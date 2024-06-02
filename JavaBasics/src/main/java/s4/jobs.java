@@ -66,4 +66,5 @@ public class jobs {
                 ", max_salary=" + max_salary +
                 '}';
     }
+
 }

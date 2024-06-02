@@ -1,11 +1,8 @@
 package s4;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 public class JDBCInsertDemo {
-    public static void main(String []strings){
+    public static void main(String []strings) throws SQLException{
         Scanner sc = new Scanner(System.in);
         String url = "jdbc:sqlite:C:\\Users\\dev\\IdeaProjects\\SDAIA-Java-Course-master\\JavaBasics\\src\\main\\java\\s4\\hr.db";
         String query = "insert into jobS values(?,?,?, ?)";
@@ -32,6 +29,8 @@ public class JDBCInsertDemo {
             st.setInt(3,max_salary);
             sc.nextInt();
 
+            int row = st.executeUpdate();
+            System.out.println(row +"insert update");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
