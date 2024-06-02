@@ -41,7 +41,7 @@ public class JobsDAO {
         st.executeUpdate();
     }
 
-    public Department selectJob(int JobId) throws SQLException {
+    public jobs selectJob(int JobId) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(SELECT_ONE_JOB);
         st.setInt(1, JobId);
@@ -60,7 +60,7 @@ public class JobsDAO {
         ResultSet rs = st.executeQuery();
         ArrayList<jobs> jobs = new ArrayList<>();
         while (rs.next()) {
-            depts.add(new jobs(rs));
+            jobs.add(new jobs(rs));
         }
 
         return jobs;
