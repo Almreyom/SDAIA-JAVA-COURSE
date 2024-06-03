@@ -7,14 +7,15 @@ import java.util.ArrayList;
 
 public class JobsDAO {
 
+  
     private static final String URL =  "jdbc:sqlite:C:\\Users\\dev\\IdeaProjects\\untitled2\\src\\main\\java\\org\\example\\hr.db";
     private static final String SELECT_ALL_JOBS = "select * from JOB";
     private static final String SELECT_ONE_JOB = "select * from JOBS where job_id = ?";
-    private static final String INSERT_JOB = "insert into jobs values (?, ?, ?)";
+    private static final String INSERT_JOB = "insert into jobs values (?, ?, ?,?)";
     private static final String UPDATE_JOB = "update jobs set job_name = ?, job_id = ? where job_id = ?";
     private static final String DELETE_JOB = "delete from jobs where jobd_id = ?";
 
-    public void setInsertJob(jobs j) throws SQLException {
+    public void setInsertJob(Jobs j) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(INSERT_JOB);
         st.setInt(1, j.getJob_Id());
@@ -24,7 +25,7 @@ public class JobsDAO {
         st.executeUpdate();
     }
 
-    public void setUpdateJob(jobs j) throws SQLException {
+    public void setUpdateJob(Jobs j) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(UPDATE_JOB);
         st.setInt(1, j.getJob_Id());
@@ -41,29 +42,29 @@ public class JobsDAO {
         st.executeUpdate();
     }
 
-    public jobs selectJob(int JobId) throws SQLException {
+    public Jobs selectJob(int JobId) throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(SELECT_ONE_JOB);
         st.setInt(1, JobId);
         ResultSet rs = st.executeQuery();
         if(rs.next()) {
-            return new Job(rs);
+            return new Jobs(rs);
         }
         else {
             return null;
         }
     }
 
-    public ArrayList<jobs> selectAlljobs() throws SQLException {
+    public ArrayList<Jobs> selectAlljobs() throws SQLException {
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(SELECT_ALL_JOBS);
         ResultSet rs = st.executeQuery();
-        ArrayList<jobs> jobs = new ArrayList<>();
+        ArrayList<Jobs> Jobs = new ArrayList<>();
         while (rs.next()) {
-            jobs.add(new jobs(rs));
+            Jobs.add(new Jobs(rs));
         }
 
-        return jobs;
+        return Jobs;
     }
 
 }
